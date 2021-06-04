@@ -45,7 +45,7 @@ router.put('/:id', (req, res) =>{
     `UPDATE list
      Set
      "bought" = 'true',
-     WHERE "treats".id = $1;`; 
+     WHERE "item".id = $1;`; 
     
     pool.query(queryString, [itemId])
     .then( response => {
