@@ -29,9 +29,9 @@ Header
             -Delete from DB
 
 Server/Routes (everyone takes one)
-    -Get (ALex)
-    -Post (Chris)
-    -Put (Jerry)
+    -[x] Get (ALex)
+    -[x] Post (Chris)
+    -Put - maybe not
     -Delete (Stephen)
     -/list to server
 

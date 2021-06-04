@@ -7,7 +7,8 @@ CREATE TABLE list (
 	id SERIAL PRIMARY KEY,
 	item varchar(80),
 	quantity numeric not null,
-	unit varchar(20)
+	unit varchar(20),
+    bought boolean DEFAULT false
 );
 
 INSERT INTO "list" 
