@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Form() {
+function Form({addItem}) {
 
     let [listItem, setListItem] = useState('');
     let [itemQuantity, setItemQuantity] = useState('');
@@ -10,7 +10,10 @@ function Form() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (listItem && itemQuantity && itemUnit) {
-            addItem();
+            addItem({item: listItem, quantity: itemQuantity, unit: itemUnit});
+            setListItem('');
+            setItemQuantity('');
+            setItemUnit('');
         } else {
             alert('Fill out the form pweeez')
         }
@@ -30,7 +33,7 @@ function Form() {
     )
 }
 
-Form.PropTypes = {
+Form.propTypes = {
     addItem: PropTypes.func.isRequired,
 };
 

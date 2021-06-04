@@ -23,12 +23,9 @@ function App() {
         })
     }//end getList
 
-    const addItem = () => {
-        axios.post('/list', {item: listItem, quantity: itemQuantity, unit: itemUnit})
+    const addItem = (newItem) => {
+        axios.post('/list', newItem)
         .then(response => {
-            setListItem('');
-            setItemQuantity('');
-            setItemUnit('');
             getList();
         }).catch(error => {
             alert('error adding item');
@@ -44,7 +41,7 @@ function App() {
             <main>
                 <p>Under Construction...</p>
             </main>
-            <Form />
+            <Form addItem={addItem}/>
             <section>
                 <h2>Shopping List</h2>
                 <button>Reset</button>
