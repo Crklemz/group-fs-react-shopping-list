@@ -4,6 +4,20 @@ const pool = require('../modules/pool.js');
 
 // TODO - Add routes here...
 
+
+//Get route
+router.get('/', (req, res) => {
+    const sqlText = `SELECT * FROM list`;
+    pool.query(sqlText)
+    .then((result) => {
+        res.send(result.rows);
+    })
+    .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
 router.post('/', (req, res) => {
     const listItem = req.body;
     const sqlText = `INSERT INTO list (item, quantity, unit)
@@ -19,6 +33,7 @@ router.post('/', (req, res) => {
         res.sendStatus(500);
     })
 })
+
 
 
 module.exports = router;
