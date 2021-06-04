@@ -7,7 +7,7 @@ import './App.css';
 function App() {
     let [groceryList, setGroceryList] = useState([]);
     let [listItem, setListItem] = useState('');
-    let [itemQuantity, setItemQuantity] = useState(0);
+    let [itemQuantity, setItemQuantity] = useState('');
     let [itemUnit, setItemUnit] = useState('');
 
     useEffect(() => {
@@ -24,7 +24,27 @@ function App() {
         })
     }//end getList
 
-    
+    const addItem = () => {
+        axios.post('/list', {item: listItem, quantity: itemQuantity, unit: itemUnit})
+        .then(response => {
+            setListItem('');
+            setItemQuantity('');
+            setItemUnit('');
+            getList();
+        }).catch(error => {
+            alert('error adding item');
+            console.log(error);
+        })
+    }//end addItem
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (listItem && itemQuantity && itemUnit) {
+            addItem();
+        } else {
+            alert('Fill out the form pweeez')
+        }
+    }//end handle submit
 
     return (
         <div className="App">
@@ -32,7 +52,7 @@ function App() {
             <main>
                 <p>Under Construction...</p>
             </main>
-            {/* <form onSubmit={handleSubmit}> */}
+            <form onSubmit={handleSubmit}>
                 <h2>Add an Item!</h2>
                 <label>Item</label>
                 <input type="text" placeholder="Item" value={listItem} onChange={(event) => setListItem(event.target.value)} />
@@ -41,7 +61,7 @@ function App() {
                 <label>Unit</label>
                 <input type="text" placeholder="Unit" value={itemUnit} onChange={(event) => setItemUnit(event.target.value)} />
                 <button type="submit" value="Submit">Add Item</button>
-            {/* </form> */}
+            </form>
         </div>
     );
 }
