@@ -37,6 +37,25 @@ router.post('/', (req, res) => {
     })
 })
 
+//put route
+router.put('/:id', (req, res) =>{
+    const itemId = req.params.id;
+
+    const queryString =
+    `UPDATE list
+     Set
+     "bought" = 'true',
+     WHERE "treats".id = $1;`; 
+    
+    pool.query(queryString, [itemId])
+    .then( response => {
+        console.log(response);
+        res.sendStatus(200); // confirms on client side that info updated
+    }).catch((err) => {
+        console.log('error in server', err);
+        res.sendStatus(500); // shows error on this server route
+    })
+})
 
 //delete route
 router.delete(':id', (req, res) => {
