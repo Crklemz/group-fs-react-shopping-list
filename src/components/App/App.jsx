@@ -62,6 +62,14 @@ function App() {
                 <input type="text" placeholder="Unit" value={itemUnit} onChange={(event) => setItemUnit(event.target.value)} />
                 <button type="submit" value="Submit">Add Item</button>
             </form>
+            <section>
+                <h2>Shopping List</h2>
+                <ul>
+                    {groceryList.map(item =>
+                        (<li key={item.id}>{item.item} {item.quantity} {item.unit}</li>)
+                    )}
+                </ul>
+            </section>
         </div>
     );
 }
