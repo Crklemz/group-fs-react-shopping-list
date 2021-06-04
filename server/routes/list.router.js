@@ -58,9 +58,11 @@ router.put('/:id', (req, res) =>{
 })
 
 //delete route
-router.delete(':id', (req, res) => {
+router.delete('/:id', (req, res) => {
     //grab id to delete from params
     itemToDelete = req.params.id;
+    console.log('req.params.id -->', req.params.id);
+    
     console.log('Item to delete', itemToDelete);
 
     const queryText = `DELETE FROM "list" WHERE "list".id = $1;`;

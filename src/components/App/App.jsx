@@ -45,6 +45,24 @@ function App() {
             alert('Fill out the form pweeez')
         }
     }//end handle submit
+    
+    
+
+    const handleRemove = (id) => {
+
+        
+        axios({
+            method: 'DELETE',
+            url: `/list/${id}`
+        }).then(response => {
+            getList();
+        }).catch(error => {
+            alert('error getting groceryList after remove button clicked');
+            console.log(error);
+        })
+    }//end handleRemove
+
+    
 
     return (
         <div className="App">
@@ -68,7 +86,7 @@ function App() {
                 <button>Clear</button>
                 <ul>
                     {groceryList.map(item =>
-                        (<li key={item.id}>{item.item} {item.quantity} {item.unit} <button>Buy</button> <button>Remove</button></li>)
+                        (<li key={item.id}> {item.item} {item.quantity} {item.unit} <button>Buy</button> <button onClick={() => handleRemove(item.id)} type="remove" value="Remove">Remove</button></li>)
                     )}
                 </ul>
             </section>
