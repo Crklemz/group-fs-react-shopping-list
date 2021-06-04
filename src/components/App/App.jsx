@@ -64,9 +64,11 @@ function App() {
             </form>
             <section>
                 <h2>Shopping List</h2>
+                <button>Reset</button>
+                <button>Clear</button>
                 <ul>
                     {groceryList.map(item =>
-                        (<li key={item.id}>{item.item} {item.quantity} {item.unit}</li>)
+                        (<li key={item.id}>{item.item} {item.quantity} {item.unit} <button>Buy</button> <button>Remove</button></li>)
                     )}
                 </ul>
             </section>
