@@ -4,22 +4,8 @@ const pool = require('../modules/pool.js');
 
 // TODO - Add routes here...
 
-router.delete(':id', (req, res) => {
-    //grab id to delete from params
-    itemToDelete = req.params.id;
-    console.log('Item to delete', itemToDelete);
 
-    const queryText = `DELETE FROM "list" WHERE "list".id = $1;`;
 
-    pool.query(queryText, [itemToDelete])
-    .then( response => {
-        console.log('Deleted item id', itemToDelete);
-        res.sendStatus(200);
-    }).catch(err => {
-        console.log('Item not deleted', err);
-        res.sendStatus(500);
-    })
-})
 
 //Get route
 router.get('/', (req, res) => {
@@ -34,6 +20,7 @@ router.get('/', (req, res) => {
     });
 });
 
+//post route
 router.post('/', (req, res) => {
     const listItem = req.body;
     const sqlText = `INSERT INTO list (item, quantity, unit)
@@ -51,5 +38,22 @@ router.post('/', (req, res) => {
 })
 
 
+//delete route
+router.delete(':id', (req, res) => {
+    //grab id to delete from params
+    itemToDelete = req.params.id;
+    console.log('Item to delete', itemToDelete);
+
+    const queryText = `DELETE FROM "list" WHERE "list".id = $1;`;
+
+    pool.query(queryText, [itemToDelete])
+    .then( response => {
+        console.log('Deleted item id', itemToDelete);
+        res.sendStatus(200);
+    }).catch(err => {
+        console.log('Item not deleted', err);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;
